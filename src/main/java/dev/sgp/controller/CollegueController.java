@@ -59,11 +59,19 @@ public class CollegueController {
 	public Collegue modifierScore(@PathVariable String pseudo, @RequestBody Integer action){
 
 		Collegue collegue = collegues.findByNom(pseudo);
-		
+
 		collegue.setScore(collegue.getScore() + action);
-		
+
 		collegues.save(collegue);
 
+		return collegue;
+
+	}
+
+	@DeleteMapping("/{pseudo}")
+	public Collegue delete(@PathVariable String pseudo) {
+		Collegue collegue = collegues.findByNom(pseudo);
+		collegues.delete(collegue);
 		return collegue;
 
 	}
